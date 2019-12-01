@@ -1,11 +1,12 @@
+from array import array
+array_num = array('i')
 def calcFuel(fuelModule):
-    fuelEntry = 0
-    fuelEntry = ((lineINT//3) - 2)
-    calcFuel()
+    fuelEntry = ((fuelModule//3) - 2)
+    array_num.append(fuelEntry)
+    if fuelEntry > 8:
+        calcFuel(fuelEntry)
 file=open(".\\Inputs\\inputDay1.txt", "r")
-fuel = 0
 for line in file:
     lineINT = int(line)
-    fuelModule = ((lineINT//3) - 2)
-    calcFuel()
-print(fuel)
+    calcFuel(lineINT)
+print(sum(array_num))
