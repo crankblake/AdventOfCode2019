@@ -1,4 +1,4 @@
-file=open(".\\Inputs\\inputDay1.txt", "r")
+file = open(".\\Inputs\\inputDay1.txt", "r")
 fuel = 0
 for line in file:
     lineINT = int(line)
