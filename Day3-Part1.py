@@ -12,9 +12,12 @@ array[centralPort] = 'O'
 np.set_printoptions(threshold=np.sys.maxsize)
 print(array)
 
-start = centralPort
+pointer = centralPort
 for command in wire1Array:
     dir = command[0]
     dist = command[1]
     print(dir)
     if dir == 'R':
+        for num in dist:
+            array[column 1, row] = 'R'
+            dist -= 1
