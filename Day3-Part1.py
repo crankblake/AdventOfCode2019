@@ -15,9 +15,9 @@ print(array)
 pointer = centralPort
 for command in wire1Array:
     dir = command[0]
-    dist = command[1]
+    dist = int(command[1])
     print(dir)
     if dir == 'R':
         for num in dist:
-            array[column 1, row] = 'R'
+            array[column + 1, row] = 'R'
             dist -= 1
