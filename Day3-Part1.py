@@ -82,3 +82,12 @@ for index, command in enumerate(wire2Array):
                 array[row + 1, column] = 'D2'
             row += 1               
 print(array)
+
+array2 = []
+for i, row in enumerate(array):
+    for j, value in enumerate(row):
+        #print("row and value index", i, j)
+        #print("row and value", row, value)
+        if value == 'XX':
+            array2.append((i,j))
+print(array2)
