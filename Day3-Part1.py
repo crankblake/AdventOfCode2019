@@ -1,17 +1,18 @@
 import numpy as np
+import scipy.spatial.distance as mdist
 file = open(".\\Inputs\\inputDay3TEST.txt", "r")
 wire1 = file.readlines(1)
 wire2 = file.readlines(2)
 wire1Array = wire1[0].split(',')
 wire2Array = wire2[0].split(',')
 array = np.empty([10,10], dtype=object)
+array = np.empty([10000,10000], dtype=object)
 array.fill('__')
 column = 0
 row = 9
-centralPort = row,column
+centralPort = [(row,column)]
 array[centralPort] = 'CP' 
-np.set_printoptions(threshold=np.sys.maxsize)
-#print(array)
+#np.set_printoptions(threshold=np.sys.maxsize)
 pointer = centralPort
 for index, command in enumerate(wire1Array):
     print("index is", index)
@@ -83,11 +84,24 @@ for index, command in enumerate(wire2Array):
             row += 1               
 print(array)
 
-array2 = []
+arrayCross = []
 for i, row in enumerate(array):
     for j, value in enumerate(row):
         #print("row and value index", i, j)
         #print("row and value", row, value)
         if value == 'XX':
-            array2.append((i,j))
-print(array2)
+            arrayCross.append((i,j))
+print(arrayCross)
+#import scipy.spatial.distance 
+#print(mdist.cityblock(centralPort, arrayCross[0]))
+#manDist
+manDistArray = []
+for i, coordinate in enumerate(arrayCross):
+    #print(i)
+    #print(arrayCross[i])
+    manDistNewEntry = mdist.cityblock(centralPort, arrayCross[i])
+    manDistArray.append(manDistNewEntry)
+    #print(manDistNewEntry)
+    #print(manDistArray)
+    #print(manDist)
+print("Manhattan value is", min(manDistArray))
