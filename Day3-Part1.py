@@ -6,12 +6,12 @@ wire2 = file.readlines(2)
 wire1Array = wire1[0].split(',')
 wire2Array = wire2[0].split(',')
 #array = np.empty([10,10], dtype=object)
-array = np.empty([40000,40000], dtype=object)
+array = np.empty([30000,30000], dtype=object)
 array.fill('__')
 #column = 0
 #row = 9
-column =  20000
-row = 20000
+column =  15000
+row = 15000
 centralPort = [(row,column)]
 array[centralPort] = 'CP' 
 #np.set_printoptions(threshold=np.sys.maxsize)
@@ -54,8 +54,8 @@ for index, command in enumerate(wire1Array):
             row += 1 
 #column = 0
 #row = 9 
-column =  20000
-row = 20000           
+column =  15000
+row = 15000           
 for index, command in enumerate(wire2Array):
     #print("\nindex is", index)
     #print("command is", command)
