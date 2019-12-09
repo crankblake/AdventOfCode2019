@@ -100,17 +100,10 @@ for i, row in enumerate(array):
         if value == 'XX':
             arrayCross.append((i,j))
 #print(arrayCross)
-#import scipy.spatial.distance 
-#print(mdist.cityblock(centralPort, arrayCross[0]))
-#manDist
 manDistArray = []
 for i, coordinate in enumerate(arrayCross):
-    #print(i)
-    #print(arrayCross[i])
     manDistNewEntry = mdist.cityblock(centralPort, arrayCross[i])
     #print("Manhattan value is", manDistNewEntry)
     manDistArray.append(manDistNewEntry)
     #print(manDistNewEntry)
-    #print(manDistArray)
-    #print(manDist)
 print("Manhattan value is", min(manDistArray))
