@@ -1,29 +1,32 @@
 import numpy as np
 import scipy.spatial.distance as mdist
-file = open(".\\Inputs\\inputDay3TEST.txt", "r")
+file = open(".\\Inputs\\inputDay3.txt", "r")
 wire1 = file.readlines(1)
 wire2 = file.readlines(2)
 wire1Array = wire1[0].split(',')
 wire2Array = wire2[0].split(',')
-array = np.empty([10,10], dtype=object)
-array = np.empty([10000,10000], dtype=object)
+#array = np.empty([10,10], dtype=object)
+array = np.empty([40000,40000], dtype=object)
 array.fill('__')
-column = 0
-row = 9
+#column = 0
+#row = 9
+column =  20000
+row = 20000
 centralPort = [(row,column)]
 array[centralPort] = 'CP' 
 #np.set_printoptions(threshold=np.sys.maxsize)
-pointer = centralPort
 for index, command in enumerate(wire1Array):
-    print("index is", index)
-    print("command is", command)
+    #print("\nindex is", index)
+    #print("command is", command)
     dir = command[0]
-    dist = int(command[1])
-    print(dir)
+    #print("dir is", dir)
+    dist = int(command[1:])
+    #print("dist is", dist)
     if dir == 'R':
         for i in range (0, dist):
             #print("dist is", dist)
             #print("i is", i)
+            #print("row, column", row,column)
             array[row, column + 1] = 'R1'
             #print("row, column", row,column)
             column += 1
@@ -33,6 +36,7 @@ for index, command in enumerate(wire1Array):
         for i in range (0, dist):
             #print("dist is", dist)
             #print("i is", i)
+            #print("row, column", row,column)
             array[row - 1, column] = 'U1'
             #print("row, column", row, column)
             row -= 1
@@ -40,20 +44,25 @@ for index, command in enumerate(wire1Array):
             #print(array)
     if dir == 'L':        
         for i in range (0, dist):
+            #print("row, column", row,column)
             array[row, column - 1] = 'L1'
             column -= 1
     if dir == 'D':
         for i in range (0, dist):
+            #print("row, column", row,column)
             array[row + 1, column] = 'D1'
             row += 1 
-column = 0
-row = 9            
+#column = 0
+#row = 9 
+column =  20000
+row = 20000           
 for index, command in enumerate(wire2Array):
-    print("index is", index)
-    print("command is", command)
+    #print("\nindex is", index)
+    #print("command is", command)
     dir = command[0]
-    dist = int(command[1])
-    print(dir)
+    dist = int(command[1:])
+    #print("dir is", dir)
+    #print("dist is", dist)
     if dir == 'R':
         for i in range (0, dist):
             if array[row, column + 1] == 'U1' or array[row, column + 1] == 'D1':
@@ -82,8 +91,7 @@ for index, command in enumerate(wire2Array):
             else:
                 array[row + 1, column] = 'D2'
             row += 1               
-print(array)
-
+#print(array)
 arrayCross = []
 for i, row in enumerate(array):
     for j, value in enumerate(row):
@@ -91,7 +99,7 @@ for i, row in enumerate(array):
         #print("row and value", row, value)
         if value == 'XX':
             arrayCross.append((i,j))
-print(arrayCross)
+#print(arrayCross)
 #import scipy.spatial.distance 
 #print(mdist.cityblock(centralPort, arrayCross[0]))
 #manDist
@@ -100,6 +108,7 @@ for i, coordinate in enumerate(arrayCross):
     #print(i)
     #print(arrayCross[i])
     manDistNewEntry = mdist.cityblock(centralPort, arrayCross[i])
+    #print("Manhattan value is", manDistNewEntry)
     manDistArray.append(manDistNewEntry)
     #print(manDistNewEntry)
     #print(manDistArray)
