@@ -2,8 +2,8 @@ import numpy as np
 import scipy.spatial.distance as mdist
 import time
 startTime = time.time()
-staticColumn = 12500
-staticRow = 12500
+staticColumn = 2500
+staticRow = 2500
 file = open(".\\Inputs\\inputDay3.txt", "r")
 wire1 = file.readlines(1)
 wire2 = file.readlines(2)
@@ -11,7 +11,7 @@ wire1Array = wire1[0].split(',')
 wire2Array = wire2[0].split(',')
 #array = np.empty([10,10], dtype=object)
 dt = np.dtype(('U2'))
-array = np.empty([25000,25000], dtype=dt)
+array = np.empty([15000,15000], dtype=dt)
 array.fill('__')
 #column = 0
 #row = 9
@@ -96,7 +96,7 @@ for index, command in enumerate(wire2Array):
             else:
                 array[row + 1, column] = 'D2'
             row += 1               
-#print(array)
+print(array)
 arrayCross = []
 for i, row in enumerate(array):
     for j, value in enumerate(row):
