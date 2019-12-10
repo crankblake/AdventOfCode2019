@@ -1,17 +1,22 @@
 import numpy as np
 import scipy.spatial.distance as mdist
+import time
+startTime = time.time()
+staticColumn = 12500
+staticRow = 12500
 file = open(".\\Inputs\\inputDay3.txt", "r")
 wire1 = file.readlines(1)
 wire2 = file.readlines(2)
 wire1Array = wire1[0].split(',')
 wire2Array = wire2[0].split(',')
 #array = np.empty([10,10], dtype=object)
-array = np.empty([30000,30000], dtype=object)
+dt = np.dtype(('U2'))
+array = np.empty([25000,25000], dtype=dt)
 array.fill('__')
 #column = 0
 #row = 9
-column =  15000
-row = 15000
+column =  staticColumn
+row = staticRow
 centralPort = [(row,column)]
 array[centralPort] = 'CP' 
 #np.set_printoptions(threshold=np.sys.maxsize)
@@ -54,8 +59,8 @@ for index, command in enumerate(wire1Array):
             row += 1 
 #column = 0
 #row = 9 
-column =  15000
-row = 15000           
+column =  staticColumn
+row = staticRow           
 for index, command in enumerate(wire2Array):
     #print("\nindex is", index)
     #print("command is", command)
@@ -107,3 +112,4 @@ for i, coordinate in enumerate(arrayCross):
     manDistArray.append(manDistNewEntry)
     #print(manDistNewEntry)
 print("Manhattan value is", min(manDistArray))
+print("--- %s seconds ---" % (time.time() - startTime))
